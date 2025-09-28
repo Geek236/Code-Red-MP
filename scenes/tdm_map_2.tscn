@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://rcf6gdhemeal"]
+
+[ext_resource type="PackedScene" uid="uid://cajsoxfooqk4v" path="res://models/TDM_map2.glb" id="1_67q6a"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_67q6a"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7wnct"]
+albedo_color = Color(0.22340205, 0.2234019, 1.2032687e-07, 1)
+
+[node name="TDM_map2" instance=ExtResource("1_67q6a")]
+
+[node name="Cube" parent="." index="0"]
+transform = Transform3D(-29.999992, 0, -9.125968e-06, 0, 1.076, 0, 4.529873e-06, 0, -60.438553, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_67q6a")
+surface_material_override/1 = SubResource("StandardMaterial3D_7wnct")
+
+[node name="spawnPoint" type="Node3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.615612, 56.14688)
+
+[node name="spawnPoint4" type="Node3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.466461, 2.615612, -45.718987)
+
+[node name="spawnPoint3" type="Node3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.685547, 0.8500023, -43.899956)
+
+[node name="spawnPoint2" type="Node3D" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.018648, 2.615612, 39.72471)

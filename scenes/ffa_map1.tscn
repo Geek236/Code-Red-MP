@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://c1j7an8woikyd"]
+
+[ext_resource type="PackedScene" uid="uid://ckf3250w8jpro" path="res://models/Environment.glb" id="1_mobw0"]
+[ext_resource type="Texture2D" uid="uid://bugwfwhpqfp1n" path="res://addons/kenney_prototype_textures/dark/texture_09.png" id="2_ro4qy"]
+[ext_resource type="Texture2D" uid="uid://1opha1cxcimy" path="res://addons/kenney_prototype_textures/orange/texture_10.png" id="3_2b5gv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_if5ix"]
+albedo_texture = ExtResource("2_ro4qy")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jylvv"]
+albedo_color = Color(0.06666667, 1, 1, 1)
+albedo_texture = ExtResource("3_2b5gv")
+uv1_triplanar = true
+
+[node name="Environment" instance=ExtResource("1_mobw0")]
+
+[node name="Plane" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_if5ix")
+surface_material_override/1 = SubResource("StandardMaterial3D_jylvv")
+
+[node name="spawnPoint" type="Node3D" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.28271484, 0)
+
+[node name="spawnPoint4" type="Node3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.274017, 3.1292877, 20.26294)
+
+[node name="spawnPoint3" type="Node3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.405228, 2.2484741, 20.083801)
+
+[node name="spawnPoint2" type="Node3D" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.480785, 2.999939, -20.302856)

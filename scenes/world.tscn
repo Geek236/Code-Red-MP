@@ -1,0 +1,322 @@
+[gd_scene load_steps=16 format=3 uid="uid://c8oqxmm2w2wvv"]
+
+[ext_resource type="Script" uid="uid://birvuixustgun" path="res://scripts/world.gd" id="1_6tkge"]
+[ext_resource type="Texture2D" uid="uid://8ka2ui7sq36p" path="res://addons/kenney_particle_pack/circle_05.png" id="3_ehmxv"]
+[ext_resource type="FontFile" uid="uid://dthioylksudgf" path="res://addons/rusted-personal-use/RUSTED PERSONAL USE.ttf" id="4_aqk2v"]
+[ext_resource type="Script" uid="uid://cf3k13pwab8jh" path="res://scripts/button.gd" id="4_dwbse"]
+[ext_resource type="Theme" uid="uid://4jyw0114q1d5" path="res://assets/button.tres" id="5_036b0"]
+[ext_resource type="Theme" uid="uid://dd8ki3t2ne56o" path="res://assets/table.tres" id="7_pkg7o"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u5pdl"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_w2qqb"]
+sky_material = SubResource("ProceduralSkyMaterial_u5pdl")
+
+[sub_resource type="Environment" id="Environment_6knbf"]
+background_mode = 2
+sky = SubResource("Sky_w2qqb")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dwbse"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gbfbk"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+
+[sub_resource type="Theme" id="Theme_ioo17"]
+LineEdit/colors/font_color = Color(0, 0, 0, 1)
+LineEdit/colors/font_placeholder_color = Color(0, 0, 0, 0.6)
+LineEdit/styles/normal = SubResource("StyleBoxFlat_gbfbk")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ujyws"]
+bg_color = Color(1, 0.117647, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cmecq"]
+bg_color = Color(0.00392157, 1, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pkg7o"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="World" type="Node"]
+script = ExtResource("1_6tkge")
+
+[node name="respawn timer idle" type="Timer" parent="."]
+wait_time = 4.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Map" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6knbf")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MainMenu" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dwbse")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MainMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainMenu/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="gamemode" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HostButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("5_036b0")
+text = "Host"
+script = ExtResource("4_dwbse")
+
+[node name="options" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme = ExtResource("5_036b0")
+text = "OPtions"
+script = ExtResource("4_dwbse")
+
+[node name="JoinButton" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("5_036b0")
+text = "Join"
+script = ExtResource("4_dwbse")
+
+[node name="Quit" type="Button" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("5_036b0")
+text = "quit"
+script = ExtResource("4_dwbse")
+
+[node name="AddressEntry" type="LineEdit" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_ioo17")
+placeholder_text = "Enter Address to Join Here"
+alignment = 1
+
+[node name="errorLabel" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="HUD" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.03, 0.03)
+pivot_offset = Vector2(576, 324)
+texture = ExtResource("3_ehmxv")
+stretch_mode = 5
+
+[node name="IP" type="Label" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -276.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 330.0
+offset_top = 70.0
+offset_right = -330.0
+offset_bottom = -536.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_ujyws")
+theme_override_styles/fill = SubResource("StyleBoxFlat_cmecq")
+max_value = 3.0
+value = 3.0
+show_percentage = false
+
+[node name="Time" type="Label" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="Pause Menu" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Pause Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pkg7o")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Pause Menu/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="CanvasLayer/Pause Menu/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_aqk2v")
+theme_override_font_sizes/font_size = 60
+text = "Game paused"
+horizontal_alignment = 1
+
+[node name="resume" type="Button" parent="CanvasLayer/Pause Menu/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_036b0")
+text = "Resume"
+
+[node name="Main menu" type="Button" parent="CanvasLayer/Pause Menu/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_036b0")
+text = "Main menu
+"
+
+[node name="leaderBoard" type="Control" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/leaderBoard"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -352.0
+offset_right = 352.0
+offset_bottom = 225.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="table" type="VBoxContainer" parent="CanvasLayer/leaderBoard/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="title" type="HBoxContainer" parent="CanvasLayer/leaderBoard/MarginContainer/table"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 1
+alignment = 1
+
+[node name="Name" type="Label" parent="CanvasLayer/leaderBoard/MarginContainer/table/title"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme = ExtResource("7_pkg7o")
+text = "Name"
+horizontal_alignment = 1
+
+[node name="Kills" type="Label" parent="CanvasLayer/leaderBoard/MarginContainer/table/title"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme = ExtResource("7_pkg7o")
+text = "Kills"
+horizontal_alignment = 1
+
+[node name="deaths" type="Label" parent="CanvasLayer/leaderBoard/MarginContainer/table/title"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme = ExtResource("7_pkg7o")
+text = "Deaths"
+horizontal_alignment = 1
+
+[node name="ping" type="Label" parent="CanvasLayer/leaderBoard/MarginContainer/table/title"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme = ExtResource("7_pkg7o")
+text = "Ping"
+horizontal_alignment = 1
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("uid://xcjrjq5cbn7y")
+spawn_path = NodePath("..")
+
+[node name="spawnpoint b" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.25644, 4.8821363, -22.018087)
+
+[node name="spawnpoint a" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.503063, 4.8821363, 23.798037)
+
+[node name="spawnpoint c" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.503063, 4.8821363, -19.620695)
+
+[node name="spawnpoint d" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8178368, -9.694794)
+
+[node name="game time" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="respawn timer idle" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainMenu/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="CanvasLayer/Pause Menu/PanelContainer/VBoxContainer/resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="CanvasLayer/Pause Menu/PanelContainer/VBoxContainer/Main menu" to="." method="_on_main_menu_pressed"]
+[connection signal="spawned" from="MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]
+[connection signal="timeout" from="game time" to="." method="_on_game_time_timeout"]

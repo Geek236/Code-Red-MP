@@ -1,0 +1,167 @@
+[gd_scene load_steps=8 format=3 uid="uid://vk4kcag3kyf6"]
+
+[ext_resource type="Script" uid="uid://kcbixddk1q4" path="res://scripts/options.gd" id="1_07a1d"]
+[ext_resource type="Texture2D" uid="uid://ddkgyhq360mgh" path="res://assets/—Pngtree—biohazard symbol stains_5147781.png" id="1_ao2gm"]
+[ext_resource type="FontFile" uid="uid://dthioylksudgf" path="res://addons/rusted-personal-use/RUSTED PERSONAL USE.ttf" id="2_07a1d"]
+[ext_resource type="Theme" uid="uid://4jyw0114q1d5" path="res://assets/button.tres" id="3_p8250"]
+[ext_resource type="Script" uid="uid://cf3k13pwab8jh" path="res://scripts/button.gd" id="5_p8250"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kls10"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ao2gm"]
+bg_color = Color(0.69803923, 0.69803923, 0.69803923, 0.42745098)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[node name="option" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_07a1d")
+
+[node name="mode" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="mode"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_kls10")
+
+[node name="TextureRect" type="TextureRect" parent="mode/PanelContainer"]
+texture_filter = 1
+layout_mode = 2
+texture = ExtResource("1_ao2gm")
+expand_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="mode/PanelContainer"]
+custom_minimum_size = Vector2(500, 600)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_ao2gm")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="mode/PanelContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="mode/PanelContainer/PanelContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_bottom = 0
+
+[node name="Label" type="Label" parent="mode/PanelContainer/PanelContainer/VBoxContainer2/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_07a1d")
+theme_override_font_sizes/font_size = 60
+text = "Multiplayer options
+"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="mode/PanelContainer/PanelContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 40
+
+[node name="HBoxContainer" type="HBoxContainer" parent="mode/PanelContainer/PanelContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="mode/PanelContainer/PanelContainer/VBoxContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_07a1d")
+theme_override_font_sizes/font_size = 30
+text = "Game mode:"
+
+[node name="gameMode" type="OptionButton" parent="mode/PanelContainer/PanelContainer/VBoxContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+selected = 0
+item_count = 4
+popup/item_0/id = 3
+popup/item_1/text = "Team deathmatch"
+popup/item_1/id = 0
+popup/item_2/text = "free for all "
+popup/item_2/id = 1
+popup/item_3/text = "capture the flag"
+popup/item_3/id = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="mode/PanelContainer/PanelContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="mode/PanelContainer/PanelContainer/VBoxContainer2/VBoxContainer/HBoxContainer2"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_07a1d")
+theme_override_font_sizes/font_size = 30
+text = "Time limit:"
+
+[node name="time limit" type="OptionButton" parent="mode/PanelContainer/PanelContainer/VBoxContainer2/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+alignment = 1
+selected = 0
+item_count = 7
+popup/item_0/id = 6
+popup/item_1/text = "5 min"
+popup/item_1/id = 0
+popup/item_2/text = "10 min"
+popup/item_2/id = 1
+popup/item_3/text = "15 min"
+popup/item_3/id = 2
+popup/item_4/text = "20 min"
+popup/item_4/id = 3
+popup/item_5/text = "30 min"
+popup/item_5/id = 4
+popup/item_6/text = "unlimited"
+popup/item_6/id = 5
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="mode/PanelContainer/PanelContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="mode/PanelContainer/PanelContainer/VBoxContainer2/VBoxContainer/HBoxContainer3"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_07a1d")
+theme_override_font_sizes/font_size = 30
+text = "Map:"
+
+[node name="map" type="OptionButton" parent="mode/PanelContainer/PanelContainer/VBoxContainer2/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+alignment = 1
+selected = 0
+item_count = 3
+popup/item_0/id = 2
+popup/item_1/text = "Map 1"
+popup/item_1/id = 0
+popup/item_2/text = "Map 2"
+popup/item_2/id = 1
+
+[node name="apply options" type="Button" parent="mode/PanelContainer/PanelContainer/VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_p8250")
+text = "Apply options"
+script = ExtResource("5_p8250")
+
+[node name="error" type="Label" parent="mode/PanelContainer/PanelContainer/VBoxContainer2"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[connection signal="item_selected" from="mode/PanelContainer/PanelContainer/VBoxContainer2/VBoxContainer/HBoxContainer/gameMode" to="." method="_on_game_mode_item_selected"]
+[connection signal="item_selected" from="mode/PanelContainer/PanelContainer/VBoxContainer2/VBoxContainer/HBoxContainer2/time limit" to="." method="_on_time_limit_item_selected"]
+[connection signal="item_selected" from="mode/PanelContainer/PanelContainer/VBoxContainer2/VBoxContainer/HBoxContainer3/map" to="." method="_on_map_item_selected"]
+[connection signal="pressed" from="mode/PanelContainer/PanelContainer/VBoxContainer2/VBoxContainer/apply options" to="." method="_on_apply_options_pressed"]
